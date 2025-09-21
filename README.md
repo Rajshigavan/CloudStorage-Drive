@@ -61,22 +61,27 @@ cloudsotrage/
    pip install django
    ```
 
-4. Apply migrations:  
+4. Run initial migrations:  
+   ```bash
+   python manage.py makemigrations
+   ```
+
+5. Apply migrations:  
    ```bash
    python manage.py migrate
    ```
 
-5. Create a superuser (optional, for admin panel):  
+6. Create a superuser (optional, for admin panel):  
    ```bash
    python manage.py createsuperuser
    ```
 
-6. Run the development server:  
+7. Run the development server:  
    ```bash
    python manage.py runserver
    ```
 
-7. Open in browser:  
+8. Open in browser:  
    ```
    http://127.0.0.1:8000/
    ```
