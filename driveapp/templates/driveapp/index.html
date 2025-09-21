@@ -1,0 +1,112 @@
+{% extends 'driveapp/base.html' %} 
+
+{% block body %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary">My Folders</h2>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary shadow-sm rounded-pill px-4"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      + Add Folder
+    </button>
+  </div>
+
+  <div class="row g-4">
+    {% for i in folder %}
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 h-100 folder-card">
+        <div class="card-body">
+          <h5 class="card-title text-dark fw-semibold">
+            <i class="bi bi-folder-fill text-warning me-2"></i>{{ i.foldername }}
+          </h5>
+          <p class="card-text text-muted">{{ i.folderdesc }}</p>
+          <a href="{% url 'folder' i.id %}" class="btn btn-outline-primary btn-sm">Open Folder</a>
+          <a href="{% url 'update_folder' i.id %}" class="btn btn-outline-warning">Edit</a>
+          <a href="{% url 'delete_folder' i.id %}" class="btn btn-outline-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info shadow-sm text-center">
+        No folders yet. Click <strong>+ Add Folder</strong> to create one.
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg border-0">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="exampleModalLabel">Add New Folder</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'addfolder' %}" method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="foldername" class="form-label fw-semibold">Folder Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="foldername"
+              name="foldername"
+              placeholder="Enter folder name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="desc" class="form-label fw-semibold">Folder Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="desc"
+              name="desc"
+              placeholder="Enter description"
+            />
+          </div>
+          <div class="text-end">
+            <button class="btn btn-success rounded-pill px-4">Add Folder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom styling -->
+<style>
+  .folder-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+  }
+  .folder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+</style>
+
+<!-- Bootstrap icons (for folder icon) -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
+{% endblock body %}

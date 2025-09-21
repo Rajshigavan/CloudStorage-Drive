@@ -1,0 +1,12 @@
+{% extends 'driveapp/base.html' %}
+{% block body %}
+<div class="container py-4">
+  <h3 class="mb-3 text-danger">Delete Folder</h3>
+  <p>Are you sure you want to delete the folder <strong>{{ folder.foldername }}</strong>?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock body %}
