@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0($%a%+j&o!=@$b90$i!7klkdzr!vp-d7=%hb0p3*oh!yq1)az
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["cloudstorage-drive.onrender.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -124,4 +124,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media Settings
 MEDIA_ROOT = BASE_DIR/'MediaFiles'
+
 MEDIA_URL = '/mediafiles/'
